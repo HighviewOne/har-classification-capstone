@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: har-classifier
+  labels:
+    app: har-classifier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: har-classifier
+  template:
+    metadata:
+      labels:
+        app: har-classifier
+    spec:
+      containers:
+      - name: har-classifier
+        image: har-classifier:latest
+        imagePullPolicy: Never  # Use local image (for kind)
+        ports:
+        - containerPort: 9696
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9696
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9696
+          initialDelaySeconds: 10
+          periodSeconds: 10

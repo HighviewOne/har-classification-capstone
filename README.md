@@ -98,13 +98,31 @@ har-classification-capstone/
 
 | Model | Test Accuracy | Notes |
 |-------|---------------|-------|
-| Logistic Regression | ~96% | Strong baseline |
-| Random Forest | ~92% | Tree-based |
-| XGBoost | ~94% | Gradient boosting |
-| Dense NN | ~95% | 3-layer MLP |
-| 1D CNN | ~96% | Convolutional |
+| **Logistic Regression** | **95.49%** | ✅ Best - Selected model |
+| Dense NN | 94.50% | 3-layer MLP |
+| XGBoost | 92.67% | Gradient boosting |
+| Random Forest | 92.60% | Tree-based |
 
-*(Results will be updated after training)*
+*(Logistic Regression outperforms complex models due to high-quality engineered features)*
+
+### Per-Class Performance (Logistic Regression)
+
+| Activity | Precision | Recall | F1-Score | Support |
+|----------|-----------|--------|----------|---------|
+| LAYING | 1.00 | 0.99 | 1.00 | 537 |
+| SITTING | 0.97 | 0.88 | 0.92 | 491 |
+| STANDING | 0.89 | 0.97 | 0.93 | 532 |
+| WALKING | 0.94 | 0.99 | 0.97 | 496 |
+| WALKING_DOWNSTAIRS | 0.99 | 0.94 | 0.96 | 420 |
+| WALKING_UPSTAIRS | 0.96 | 0.95 | 0.95 | 471 |
+| **Overall** | **0.96** | **0.95** | **0.95** | **2947** |
+
+### Key Findings
+
+1. **LAYING** is perfectly identified (100% precision) - very distinct sensor patterns
+2. **SITTING vs STANDING** has some confusion - both are stationary activities
+3. **Walking activities** are well-differentiated despite similar motion patterns
+4. The 561 engineered features capture activity signatures effectively
 
 ## How to Run
 

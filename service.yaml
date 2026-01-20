@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: har-classifier
+  labels:
+    app: har-classifier
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 9696
+    protocol: TCP
+    name: http
+  selector:
+    app: har-classifier
