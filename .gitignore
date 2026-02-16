@@ -35,6 +35,9 @@ Pipfile.lock
 # OS
 .DS_Store
 Thumbs.db
+__MACOSX/
+*.JPG
+*.jpg
 
 # Logs
 *.log
